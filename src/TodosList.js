@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import TodosListHeader from './TodosListHeader';
+import TodosListItem from './TodosListItem';
+import _ from 'lodash';
 import './App.css';
 
 export default class TodosList extends Component {
-  render() {
-    console.log(this.props);
 
+  renderItems() {
+    return _.map(this.props.todos, todo => <TodosListItem key={todo.id} {...todo} />);
+  }
+
+  render() {
     return (
       <table>
-        <thead>
-          <tr>
-            <th>Tasks</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        <TodosListHeader/>
+        <tbody>
+          {this.renderItems()}
+        </tbody>
       </table>
     );
   }

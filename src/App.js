@@ -4,10 +4,12 @@ import './App.css';
 
 const todos = [
   {
+    id: 1,
     task: 'Faire un react tutorial',
     isCompleted: 'false'
   },
   {
+    id: 2,
     task: 'Faire a manger',
     isCompleted: 'true'
   }
