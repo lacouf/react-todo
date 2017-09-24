@@ -20,7 +20,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos
+      todos,
+      counter: 2
     }
   }
 
@@ -28,10 +29,27 @@ class App extends Component {
     return (
       <div>
         <h1>React Todos App</h1>
-        <CreateTodo/>
+        <CreateTodo createTask={this.createTask.bind(this)}/>
         <TodosList todos={this.state.todos}/>
       </div>
     );
+  }
+
+  createTask(task) {
+    let id = this.nextId();
+    this.state.todos.push({
+      id: id,
+      task,
+      isCompleted: false
+    });
+    this.setState({ todos: this.state.todos});
+  }
+
+  nextId() {
+    console.log("Before: " + this.state.counter);
+    this.setState({ counter: ++this.state.counter})
+    console.log("After: " + this.state.counter);
+    return this.state.counter;
   }
 }
 
