@@ -13,12 +13,15 @@ export default class TodosListItem extends Component {
     const { task, isCompleted } = this.props;
 
     const taskStyle = {
-          color: isCompleted==='true' ? 'green' : 'red',
+          color: isCompleted ? 'green' : 'red',
           cursor: 'pointer'
         };
 
     return (
-        <td style={taskStyle}>{task}</td>
+        <td style={taskStyle}
+            onClick={this.props.toggleTask.bind(this, task)}
+        >
+        {task}</td>
     );
 
   }

@@ -7,7 +7,8 @@ import './App.css';
 export default class TodosList extends Component {
 
   renderItems() {
-    return _.map(this.props.todos, todo => <TodosListItem key={todo.id} {...todo} />);
+    const props = _.omit(this.props, 'todos');
+    return _.map(this.props.todos, todo => <TodosListItem key={todo.id} {...todo} {...this.props} />);
   }
 
   render() {

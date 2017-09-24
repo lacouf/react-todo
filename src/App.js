@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import CreateTodo from './CreateTodo';
 import TodosList from './TodosList';
+import _ from 'lodash';
 import './App.css';
 
 const todos = [
   {
     id: 1,
     task: 'Faire un react tutorial',
-    isCompleted: 'false'
+    isCompleted: false
   },
   {
     id: 2,
     task: 'Faire a manger',
-    isCompleted: 'true'
+    isCompleted: true
   }
 ];
 
@@ -30,7 +31,10 @@ class App extends Component {
       <div>
         <h1>React Todos App</h1>
         <CreateTodo createTask={this.createTask.bind(this)}/>
-        <TodosList todos={this.state.todos}/>
+        <TodosList
+            todos={this.state.todos}
+            toggleTask={this.toggleTask.bind(this)}
+            />
       </div>
     );
   }
@@ -45,10 +49,14 @@ class App extends Component {
     this.setState({ todos: this.state.todos});
   }
 
+  toggleTask(task) {
+    const foundTodo=_.find(this.state.todos, todo => todo.task === task);
+    foundTodo.isCompleted = !foundTodo.isCompleted;
+    this.setState({ todos: this.state.todos});
+  }
+
   nextId() {
-    console.log("Before: " + this.state.counter);
     this.setState({ counter: ++this.state.counter})
-    console.log("After: " + this.state.counter);
     return this.state.counter;
   }
 }
