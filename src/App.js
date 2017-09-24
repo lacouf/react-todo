@@ -38,7 +38,7 @@ class App extends Component {
   createTask(task) {
     let id = this.nextId();
     this.state.todos.push({
-      id: id,
+      id,
       task,
       isCompleted: false
     });

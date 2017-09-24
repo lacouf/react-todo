@@ -9,6 +9,20 @@ export default class TodosListItem extends Component {
     }
   }
 
+  renderTaskSection() {
+    const { task, isCompleted } = this.props;
+
+    const taskStyle = {
+          color: isCompleted==='true' ? 'green' : 'red',
+          cursor: 'pointer'
+        };
+
+    return (
+        <td style={taskStyle}>{task}</td>
+    );
+
+  }
+
   renderActionSection() {
     if (this.state.isEditing) {
       return (
@@ -31,7 +45,7 @@ export default class TodosListItem extends Component {
 
     return (
         <tr>
-          <td>{this.props.task}</td>
+          {this.renderTaskSection()}
           {this.renderActionSection()}
         </tr>
     );
